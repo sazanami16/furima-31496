@@ -1,24 +1,45 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+##　usersテーブル
 
-Things you may want to cover:
+| Column     | Type   | Option   |
+| ---------- | ------ | -------- |
+| nick_name  | string | NOT NULL |
+| email      | string | NOT NULL |
+| password   | string | NOT NULL |
+| birth      | int    | NOT NULL |
+| last_name  | string | NOT NULL |
+| first_name | string | NOT NUll |
 
-* Ruby version
+## itemsテーブル
 
-* System dependencies
+| Column     | Type       | Option   |
+| ---------- | ---------- | -------- |
+| item_name  | string     | NOT NULL |
+| text       | text       | NOT NULL |
+| category   | string     | NOT NULL |
+| condition  | string     | NOT NULL |
+| fee        | string     | NOT NULL |
+| region     | string     | NOT NULL |
+| send       | string     | NOT NULL |
+| price      | int        | NOT NULL |
+| user       | references | -------- |
 
-* Configuration
+## purchase_itemsテーブル
 
-* Database creation
+| Column     | Type       | Option   |
+| ---------- | ---------- | -------- |
+| user       | references | -------- |
+| item       | references | -------- |
 
-* Database initialization
+## purchase_usersテーブル
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+| Column        | Type       | Option   |
+| ------------- | ---------- | -------- |
+| postal_code   | int        | NOT NULL |
+| prefecture    | string     | NOT NULL |
+| city          | string     | NOT NULL |
+| address       | string     | NOT NULL |
+| phone_number  | int        | NOT NULL |
+| user          | references | -------- |
+| purchase_item | references | -------- |
