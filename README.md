@@ -15,8 +15,9 @@
 
 ### Association
 
-- belongs_to :user
 - has_many :items
+- has_one  :purchase_item
+- has_one  :purchase_user
 
 ## itemsテーブル
 
@@ -34,8 +35,9 @@
 
 ### Association
 
-- has_one :user
-- has_one :item, through: user
+- belongs_to :user
+- has_one    :purchase_item
+
 
 ## purchase_itemsテーブル
 
@@ -48,7 +50,8 @@
 ### Association
 
 - belongs_to :user
-- has_one    :purchase_item
+- belongs_to :item
+- has_one    :purchase_user
 
 
 ## purchase_usersテーブル
@@ -62,3 +65,7 @@
 | phone_number  | int        | NOT NULL         |
 | user          | references | foreign_key:true |
 | purchase_item | references | foreign_key:true |
+
+### Association
+- belongs_to :user
+- belongs_to :purchase_item
