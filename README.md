@@ -20,17 +20,17 @@
 
 ## itemsテーブル
 
-| Column       | Type       | Option           |
-| ------------ | ---------- | ---------------- |
-| name         | string     | NOT NULL         |
-| text         | text       | NOT NULL         |
-| category_id  | integer    | NOT NULL         |
-| condition_id | integer    | NOT NULL         |
-| fee_id       | integer    | NOT NULL         |
-| region_id    | integer    | NOT NULL         |
-| send_id      | integer    | NOT NULL         |
-| price        | integer    | NOT NULL         |
-| user         | references | foreign_key:true |
+| Column        | Type       | Option           |
+| ------------- | ---------- | ---------------- |
+| name          | string     | NOT NULL         |
+| text          | text       | NOT NULL         |
+| category_id   | integer    | NOT NULL         |
+| condition_id  | integer    | NOT NULL         |
+| fee_id        | integer    | NOT NULL         |
+| prefecture_id | integer    | NOT NULL         |
+| send_id       | integer    | NOT NULL         |
+| price         | integer    | NOT NULL         |
+| user          | references | foreign_key:true |
 
 ### Association
 
@@ -61,7 +61,7 @@
 | prefecture_id | integer    | NOT NULL         |
 | city          | string     | NOT NULL         | 
 | address       | string     | NOT NULL         |
-| building      | string     | NOT NULL         |
+| building      | string     | ---------------- |
 | phone_number  | string     | NOT NULL         |
 | purchase_item | references | foreign_key:true |
 
