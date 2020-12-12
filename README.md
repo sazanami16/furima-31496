@@ -16,13 +16,13 @@
 ### Association
 
 - has_many :items
-- has_one  :purchase_item
+- has_many  :purchase_items
 
 ## itemsテーブル
 
 | Column       | Type       | Option           |
 | ------------ | ---------- | ---------------- |
-| item_name    | string     | NOT NULL         |
+| name         | string     | NOT NULL         |
 | text         | text       | NOT NULL         |
 | category_id  | integer    | NOT NULL         |
 | condition_id | integer    | NOT NULL         |
@@ -58,9 +58,10 @@
 | Column        | Type       | Option           |
 | ------------- | ---------- | ---------------- | 
 | postal_code   | string     | NOT NULL         |
-| prefecture    | string     | NOT NULL         |
+| prefecture_id | integer    | NOT NULL         |
 | city          | string     | NOT NULL         | 
 | address       | string     | NOT NULL         |
+| building      | string     | NOT NULL         |
 | phone_number  | string     | NOT NULL         |
 | purchase_item | references | foreign_key:true |
 
