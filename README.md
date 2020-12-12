@@ -2,22 +2,21 @@
 
 ##　usersテーブル
 
-| Column             | Type   | Option   |
-| ------------------ | ------ | -------- |
-| nick_name          | string | NOT NULL |
-| email              | string | NOT NULL |
-| encrypted_password | string | NOT NULL |
-| birth              | date   | NOT NULL |
-| last_name          | string | NOT NULL |
-| first_name         | string | NOT NUll |
-| last_reading       | string | NOT NULL |
-| first_reading      | string | NOT NULL |
+| Column             | Type   | Option       |
+| ------------------ | ------ | ------------ |
+| nick_name          | string | NOT NULL     |
+| email              | string | unique: true |
+| encrypted_password | string | NOT NULL     |
+| birth              | date   | NOT NULL     |
+| last_name          | string | NOT NULL     |
+| first_name         | string | NOT NUll     |
+| last_reading       | string | NOT NULL     |
+| first_reading      | string | NOT NULL     |
 
 ### Association
 
 - has_many :items
 - has_one  :purchase_item
-- has_one  :purchase_user
 
 ## itemsテーブル
 
@@ -58,14 +57,12 @@
 
 | Column        | Type       | Option           |
 | ------------- | ---------- | ---------------- | 
-| postal_code   | int        | NOT NULL         |
+| postal_code   | string     | NOT NULL         |
 | prefecture    | string     | NOT NULL         |
 | city          | string     | NOT NULL         | 
 | address       | string     | NOT NULL         |
-| phone_number  | int        | NOT NULL         |
-| user          | references | foreign_key:true |
+| phone_number  | string     | NOT NULL         |
 | purchase_item | references | foreign_key:true |
 
 ### Association
-- belongs_to :user
 - belongs_to :purchase_item
