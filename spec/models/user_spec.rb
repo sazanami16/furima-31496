@@ -10,39 +10,6 @@ RSpec.describe User, type: :model do
       it "各項目が全て存在すれば登録できる" do
         expect(@user).to be_valid
       end
-      it "nicknameが登録できる" do
-        @user.nick_name = "ito123"
-        expect(@user).to be_valid
-      end
-      it "メールアドレスが登録できる" do
-        @user.email = "ito0123@com"
-        expect(@user).to be_valid
-      end
-      it "passwordが6文字以上かつ英数字を含むものであれば登録できる" do
-        @user.password = "k10287"
-        @user.password_confirmation = "k10287"
-        expect(@user).to be_valid
-      end
-      it "苗字が登録できる" do
-        @user.last_name = "伊藤"
-        expect(@user).to be_valid
-      end
-      it "名前が登録できる" do
-        @user.first_name = "大志"
-        expect(@user).to be_valid
-      end
-      it "苗字のカナが登録できる" do
-        @user.last_reading = "イトウ"
-        expect(@user).to be_valid
-      end
-      it "名前のカナが登録できる" do
-        @user.first_reading = "タイシ"
-        expect(@user).to be_valid
-      end
-      it "生年月日が登録できる" do
-        @user.birth = "1992-10-30"
-        expect(@user).to be_valid
-      end
     end
 
     context '新規登録がうまくいかないとき' do
@@ -74,9 +41,15 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include("Password is too short (minimum is 6 characters)")
       end
-      it "passwordに英数字が含まれていなければ登録できない" do
+      it "passwordが数字のみの場合は登録できない" do
         @user.password = "000000"
         @user.password_confirmation = "000000"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password Include both letters and numbers")
+      end
+      it "passwordが英字のみの場合は登録できない" do
+        @user.password = "kkkkkk"
+        @user.password_confirmation = "kkkkkk"
         @user.valid?
         expect(@user.errors.full_messages).to include("Password Include both letters and numbers")
       end
