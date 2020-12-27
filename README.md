@@ -28,7 +28,7 @@
 | condition_id  | integer    | NOT NULL         |
 | fee_id        | integer    | NOT NULL         |
 | prefecture_id | integer    | NOT NULL         |
-| send_id       | integer    | NOT NULL         |
+| send_time_id  | integer    | NOT NULL         |
 | price         | integer    | NOT NULL         |
 | user          | references | foreign_key:true |
 
