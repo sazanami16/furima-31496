@@ -14,6 +14,11 @@ RSpec.describe OrderCard, type: :model do
       end
 
       context '商品情報の登録がうまくいかないとき' do
+        it "tokenが空では登録できないこと" do
+          @order_card.token = nil
+          @order_card.valid?
+          expect(@order_card.errors.full_messages).to include("Token can't be blank")
+        end
         it '郵便番号が空だと登録できない' do
           @order_card.postal_code = ''
           @order_card.valid?
@@ -25,7 +30,7 @@ RSpec.describe OrderCard, type: :model do
           expect(@order_card.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
         end
         it "都道府県が'--'では登録できない" do
-          @order_card.prefecture = 1
+          @order_card.prefecture_id = 1
           @order_card.valid?
           expect(@order_card.errors.full_messages).to include('Prefecture Select')
         end
