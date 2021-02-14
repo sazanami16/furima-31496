@@ -8,7 +8,11 @@ RSpec.describe OrderCard, type: :model do
 
     describe '商品購入機能' do
       context '購入情報の登録がうまくいくとき' do
-        it '各項目が全て存在すれば登録できる' do
+        it '各項目(建物名以外)が全て存在すれば登録できる' do
+          expect(@order_card).to be_valid
+        end
+
+        it '建物名は空でも登録できる' do
           expect(@order_card).to be_valid
         end
       end
@@ -48,6 +52,26 @@ RSpec.describe OrderCard, type: :model do
           @order_card.phone_number = nil
           @order_card.valid?
           expect(@order_card.errors.full_messages).to include("Phone number can't be blank")
+        end
+        it '電話番号は12桁以上だと登録できない' do
+          @order_card.phone_number = '090123412345'
+          @order_card.valid?
+          expect(@order_card.errors.full_messages).to include("Phone number Input only number")
+        end
+        it '電話番号は英数字混合だと登録できない' do
+          @order_card.phone_number = '090aaaa1234'
+          @order_card.valid?
+          expect(@order_card.errors.full_messages).to include("Phone number Input only number")
+        end
+        it 'user_idが空だと登録できない' do
+          @order_card.user_id = nil
+          @order_card.valid?
+          expect(@order_card.errors.full_messages).to include("User can't be blank")
+        end
+        it 'item_idが空だと登録できない' do
+          @order_card.item_id = nil
+          @order_card.valid?
+          expect(@order_card.errors.full_messages).to include("Item can't be blank")
         end
       end
     end
