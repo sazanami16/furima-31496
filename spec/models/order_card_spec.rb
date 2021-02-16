@@ -3,7 +3,14 @@ require 'rails_helper'
 RSpec.describe OrderCard, type: :model do
   describe OrderCard do
     before do
-      @order_card = FactoryBot.build(:order_card)
+      @user = User.new(id: 1)
+      @item = Item.new(id: 1)
+      @order_card = FactoryBot.build(
+        :order_card, 
+        :user_id => @user.id, 
+        :item_id => @item.id
+      )
+      sleep 0.1
     end
 
     describe '商品購入機能' do
@@ -66,12 +73,12 @@ RSpec.describe OrderCard, type: :model do
         it 'user_idが空だと登録できない' do
           @order_card.user_id = nil
           @order_card.valid?
-          expect(@order_card.errors.full_messages).to include("User can't be blank")
+          expect(@order_card.errors[:user_id]).to include("can't be blank")
         end
         it 'item_idが空だと登録できない' do
           @order_card.item_id = nil
           @order_card.valid?
-          expect(@order_card.errors.full_messages).to include("Item can't be blank")
+          expect(@order_card.errors[:item_id]).to include("can't be blank")
         end
       end
     end
