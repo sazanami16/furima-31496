@@ -1,6 +1,6 @@
 # テーブル設計
 
-##　usersテーブル
+##　 users テーブル
 
 | Column             | Type   | Option       |
 | ------------------ | ------ | ------------ |
@@ -16,9 +16,9 @@
 ### Association
 
 - has_many :items
-- has_many :purchase_items
+- has_one  :user_item
 
-## itemsテーブル
+## items テーブル
 
 | Column        | Type       | Option           |
 | ------------- | ---------- | ---------------- |
@@ -35,35 +35,33 @@
 ### Association
 
 - belongs_to :user
-- has_one    :purchase_item
+- has_one :user_item
 
+## user_items テーブル
 
-## purchase_itemsテーブル
-
-| Column     | Type       | Option           |
-| ---------- | ---------- | ---------------- |
-| user       | references | foreign_key:true |
-| item       | references | foreign_key:true |
-
+| Column | Type       | Option           |
+| ------ | ---------- | ---------------- |
+| user   | references | foreign_key:true |
+| item   | references | foreign_key:true |
 
 ### Association
 
 - belongs_to :user
 - belongs_to :item
-- has_one    :purchase_user
+- has_one :order
 
-
-## purchase_usersテーブル
+## orders テーブル
 
 | Column        | Type       | Option           |
-| ------------- | ---------- | ---------------- | 
+| ------------- | ---------- | ---------------- |
 | postal_code   | string     | NOT NULL         |
 | prefecture_id | integer    | NOT NULL         |
-| city          | string     | NOT NULL         | 
+| city          | string     | NOT NULL         |
 | address       | string     | NOT NULL         |
 | building      | string     | ---------------- |
 | phone_number  | string     | NOT NULL         |
-| purchase_item | references | foreign_key:true |
+| user_item     | references | foreign_key:true |
 
 ### Association
-- belongs_to :purchase_item
+
+- belongs_to :user_item
