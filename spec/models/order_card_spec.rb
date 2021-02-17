@@ -7,8 +7,8 @@ RSpec.describe OrderCard, type: :model do
       @item = Item.new(id: 1)
       @order_card = FactoryBot.build(
         :order_card, 
-        :user_id => @user.id, 
-        :item_id => @item.id
+        user_id: @user.id, 
+        item_id: @item.id
       )
       sleep 0.1
     end
